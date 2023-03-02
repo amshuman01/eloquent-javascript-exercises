@@ -1,2 +1,2 @@
-# eloquent-javascript-exercises-
+# eloquent-javascript
 Exercise solution for eloquent-javascript
