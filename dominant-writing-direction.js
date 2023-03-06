@@ -47,3 +47,5 @@ console.log(dominantDirection("Hello!"));
 // // → ltr
 console.log(dominantDirection("Hey, مساء الخير"));
 // → rtl
+
+console.log(Object.prototype);
