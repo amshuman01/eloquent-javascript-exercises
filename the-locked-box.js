@@ -15,13 +15,16 @@ const box = {
 
 function withBoxUnlocked(body) {
   // Your code here.
-  if (box.locked === true) {
-    box.unlock();
-    body();
-    box.lock();
-    return;
+
+  if (box.locked !== true) {
+    return body();
   }
-  body();
+  try {
+    box.unlock();
+    return body();
+  } finally {
+    box.lock();
+  }
 }
 
 withBoxUnlocked(function () {
