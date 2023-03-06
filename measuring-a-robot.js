@@ -33,6 +33,7 @@ function buildGraph(edges) {
 
 var roadGraph = buildGraph(roads);
 
+//creates map for the graph
 var VillageState = class VillageState {
   constructor(place, parcels) {
     this.place = place;
