@@ -11,13 +11,11 @@ async function locateScalpel(nest) {
 }
 
 function locateScalpel2(nest) {
-  async function loop(current) {
-    const next = await anyStorage(nest, current, "scalpel");
-    if (next === current) {
-      return current;
-    } else {
-      return loop(next);
-    }
+  function loop(current) {
+    return anyStorage(nest, current, "scalpel").then((next) => {
+      if (next == current) return current;
+      else return loop(next);
+    });
   }
   return loop(nest.name);
 }
