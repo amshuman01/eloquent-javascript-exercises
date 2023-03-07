@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>🎈</p>
+
+    <script>
+      const balloon = document.querySelector("p");
+      const maxSize = 250;
+      const explodeSize = 500;
+
+      function inflateBalloon() {
+        const currentSize = parseFloat(
+          window.getComputedStyle(balloon).fontSize
+        );
+        const newSize = currentSize * 1.1;
+        if (newSize <= maxSize) {
+          balloon.style.fontSize = `${newSize}px`;
+        } else {
+          balloon.textContent = "💥";
+          document.removeEventListener("keydown", handleKeyDown);
+        }
+      }
+
+      function deflateBalloon() {
+        const currentSize = parseFloat(
+          window.getComputedStyle(balloon).fontSize
+        );
+        const newSize = currentSize / 1.1;
+        if (newSize >= 10) {
+          balloon.style.fontSize = `${newSize}px`;
+        }
+      }
+
+      function handleKeyDown(event) {
+        if (event.key === "ArrowUp") {
+          event.preventDefault(); // helps to avoid scrolling
+          inflateBalloon();
+        } else if (event.key === "ArrowDown") {
+          event.preventDefault();
+          deflateBalloon();
+        }
+      }
+
+      document.addEventListener("keydown", handleKeyDown);
+    </script>
+  </body>
+</html>
