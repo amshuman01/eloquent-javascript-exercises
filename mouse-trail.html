@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .trail {
+        /* className for the trail elements */
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        background: teal;
+        /* display: none; */
+      }
+      body {
+        height: 300px;
+      }
+    </style>
+
+    <script>
+      // create an array of trail elements
+      const trailElems = [];
+      for (let i = 0; i < 20; i++) {
+        const elem = document.createElement("div");
+        elem.className = "trail";
+        document.body.appendChild(elem);
+        trailElems.push(elem);
+      }
+
+      // keep track of the current trail element index
+      let currentElemIndex = 0;
+
+      // add a mousemove event listener to update the trail position
+      document.addEventListener("mousemove", function (event) {
+        // get the current trail element and move it to the mouse position
+        const currentElem = trailElems[currentElemIndex];
+        currentElem.style.left = event.pageX - 10 + "px"; // offset by half width and height
+        currentElem.style.top = event.pageY - 10 + "px";
+
+        // increment the current trail element index, wrapping around if necessary
+        currentElemIndex = (currentElemIndex + 1) % trailElems.length;
+      });
+    </script>
+  </body>
+</html>
