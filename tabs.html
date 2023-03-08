@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="tabs"></div> -->
+    <tab-panel>
+      <div data-tabname="one">Tab one</div>
+      <div data-tabname="two">Tab two</div>
+      <div data-tabname="three">Tab three</div>
+    </tab-panel>
+    <style>
+      .active {
+        background-color: blanchedalmond;
+      }
+    </style>
+
+    <script>
+      //   const tabs = document.querySelector("#tabs");
+      //   //   const tabSelector=()=>{
+
+      //   //   }
+      //   for (let i = 0; i < 3; i++) {
+      //     const tab = document.createElement("button");
+      //     tab.textContent = `tab${i + 1}`;
+      //     tabs.appendChild(tab);
+      //     // tab.addEventListener("click", tabSelector);
+      //   }
+      //   function asTabs(node) {
+      //     // Your code here.
+      //     tabs;
+      //   }
+      //   asTabs(document.querySelector("tab-panel"));
+
+      function asTabs(node) {
+        // Convert the child nodes of the given node into an array
+        const childNodes = Array.from(node.childNodes).filter(
+          (ele) => ele.nodeType === Node.ELEMENT_NODE
+        );
+        console.log(childNodes);
+
+        // Create a container for the buttons
+        const buttonContainer = document.createElement("div");
+
+        // Create a button for each child node and append it to the button container
+        childNodes.forEach((child, index) => {
+          const button = document.createElement("button");
+          button.textContent = child.getAttribute("data-tabname");
+
+          // Add a click event listener to each button that will show the corresponding tab
+          button.addEventListener("click", () => {
+            // Hide all tabs except for the selected one
+            childNodes.forEach(
+              (otherChild) => (otherChild.style.display = "none")
+            );
+
+            child.style.display = "";
+            // Hide all tabs except for the first one
+
+            // Set the active class on the selected button
+            buttons.forEach((otherButton) => {
+              otherButton.classList.remove("active");
+            });
+            button.classList.add("active");
+          });
+
+          // Append the button to the container
+          buttonContainer.appendChild(button);
+          console.log(child);
+          if (index !== 0) {
+            child.style.display = "none";
+          }
+        });
+
+        // Add the button container to the top of the node
+        node.insertBefore(buttonContainer, node.firstChild);
+
+        // Add the "active" class to the first button
+        const buttons = Array.from(buttonContainer.childNodes);
+        buttons[0].classList.add("active");
+      }
+
+      // Call the asTabs function on the <tab-panel> element
+      asTabs(document.querySelector("tab-panel"));
+    </script>
+  </body>
+</html>
