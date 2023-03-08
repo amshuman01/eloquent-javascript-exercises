@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .right {
+        text-align: right;
+      }
+    </style>
+    <h1>Mountains</h1>
+
+    <div id="mountains">
+      <table>
+        <tr>
+          <th>name</th>
+          <th>height</th>
+          <th>place</th>
+        </tr>
+        <tr>
+          <td>Kilimanjaro</td>
+          <td class="right">5895</td>
+          <td>Tanzania</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      const MOUNTAINS = [
+        { name: "Kilimanjaro", height: 5895, place: "Tanzania" },
+        { name: "Everest", height: 8848, place: "Nepal" },
+        { name: "Mount Fuji", height: 3776, place: "Japan" },
+        { name: "Vaalserberg", height: 323, place: "Netherlands" },
+        { name: "Denali", height: 6168, place: "United States" },
+        { name: "Popocatepetl", height: 5465, place: "Mexico" },
+        { name: "Mont Blanc", height: 4808, place: "Italy/France" },
+      ];
+
+      const table = document.querySelector("table");
+
+      for (let values of MOUNTAINS) {
+        const TR = document.createElement("tr");
+        for (let trVal in values) {
+          const TD = document.createElement("td");
+          TD.innerText = values[trVal];
+          TR.appendChild(TD);
+          if (trVal === "height") {
+            TD.classList.add("right");
+          }
+        }
+        table.appendChild(TR);
+      }
+      // Your code here
+    </script>
+  </body>
+</html>
